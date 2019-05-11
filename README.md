@@ -1,0 +1,1 @@
+# aspnetcore-effective-logging
