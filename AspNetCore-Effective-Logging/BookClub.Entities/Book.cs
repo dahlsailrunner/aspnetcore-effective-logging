@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace BookClub.Entities
+﻿namespace BookClub.Entities
 {
     public class Book
     {

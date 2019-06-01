@@ -8,7 +8,6 @@ namespace BookClub_UI.Pages
     {
         public void OnGet()
         {
-
         }
     }
 }
