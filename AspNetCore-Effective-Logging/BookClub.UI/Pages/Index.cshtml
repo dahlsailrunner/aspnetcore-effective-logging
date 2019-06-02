@@ -4,7 +4,31 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+    <div class="jumbotron" style="padding-top: 20px; margin-top: 10px;">
+        <h1>Effective Logging - ASP.Net Core</h1>
+        <p>
+            This site uses the <a href="https://demo.identityserver.io">public demo version of IdentityServer4</a> for
+            authentication purposes, and performs basic operations that illustrate how logging in ASP.NET Core works.
+        </p>
+        <div>
+            <span style="margin-right:10px;" class="label label-primary">N O T E </span> All of the pages below except the Home page require
+            an authenticated user.
+        </div>
+    </div>
+
+    <div class="list-group">
+        <a class="list-group-item" asp-area="" asp-page="/Index">
+            <h4 class="list-group-item-heading">Home</h4>
+            <p class="list-group-item-text">This page does not require authentication.</p>
+        </a>
+
+        <a class="list-group-item" asp-area="" asp-page="/BookList">
+            <h4 class="list-group-item-heading">Book List</h4>
+            <p class="list-group-item-text">This page makes an API call and then shows the result as a list of books.</p>
+        </a>
+
+        <a class="list-group-item" asp-area="" asp-page="/About">
+            <h4 class="list-group-item-heading">About</h4>
+            <p class="list-group-item-text">This page logs an informational entry and requires an authenticated user.</p>
+        </a>
+    </div>

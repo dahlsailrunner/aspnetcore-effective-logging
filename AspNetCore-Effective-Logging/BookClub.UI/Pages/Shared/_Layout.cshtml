@@ -6,7 +6,6 @@
     <title>@ViewData["Title"] - Book Club</title>
 
     <link rel="stylesheet" href="~/css/bootstrap.min.css" />
-    
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
@@ -29,10 +28,10 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/About">About</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
                     </ul>
+                </div>
+                <div>
+                    @User.Identity.Name
                 </div>
             </div>
         </nav>

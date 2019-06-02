@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -49,8 +50,10 @@ namespace BookClub.UI
                     options.Scope.Add("email");
                     options.Scope.Add("api");
                     options.Scope.Add("offline_access");
+
                     options.GetClaimsFromUserInfoEndpoint = true;
                     options.SaveTokens = true;
+                    options.ClaimActions.MapAllExcept("nbf", "exp", "aud", "nonce", "iat", "c_hash");
                     options.Events.OnTicketReceived = e =>
                     {
                         e.Principal = TransformClaims(e.Principal);
@@ -82,7 +85,6 @@ namespace BookClub.UI
 
             app.UseAuthentication();
 
-            
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
@@ -93,8 +95,7 @@ namespace BookClub.UI
         {
             var claims = new List<Claim>();
             claims.AddRange(principal.Claims);  // retain any claims from originally authenticated user
-            claims.Add(new Claim("junk", "garbage"));
-
+            
             var newIdentity = new ClaimsIdentity(claims, principal.Identity.AuthenticationType, "name", "role");
             return new ClaimsPrincipal(newIdentity);
         }

@@ -21,12 +21,5 @@ namespace BookClub.Data
                 .ToList();
             return books;
         }
-
-        public List<Book> GetAllBooksThrowError()
-        {
-            var books = _db.Query<Book>("ProcNameThatDoesntExist", commandType: CommandType.StoredProcedure)
-                .ToList();
-            return books;
-        }
     }
 }
