@@ -15,7 +15,8 @@ namespace BookClub.UI
             _httpContext = httpContext;
             InnerHandler = new SocketsHttpHandler();
         }
-        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, 
+            CancellationToken cancellationToken)
         {
             var token = await _httpContext.GetTokenAsync("access_token");
 

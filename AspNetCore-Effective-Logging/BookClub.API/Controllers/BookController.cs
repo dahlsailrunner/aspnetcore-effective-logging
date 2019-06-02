@@ -20,7 +20,6 @@ namespace BookClub.API.Controllers
         public IEnumerable<Book> GetBooks()
         {
             return _bookRepo.GetAllBooks();
-            //return _bookRepo.GetAllBooksThrowError();
         }
 
         [HttpGet("{id}", Name = "Get")]
