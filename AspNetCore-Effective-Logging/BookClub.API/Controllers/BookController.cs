@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using BookClub.Data;
 using BookClub.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace BookClub.API.Controllers
 {
@@ -10,15 +12,20 @@ namespace BookClub.API.Controllers
     public class BookController : ControllerBase
     {
         private readonly IBookRepository _bookRepo;
+        private readonly ILogger<BookController> _logger;
 
-        public BookController(IBookRepository bookRepo)
+        public BookController(IBookRepository bookRepo, ILogger<BookController> logger)
         {
             _bookRepo = bookRepo;
+            _logger = logger;
         }
 
         [HttpGet]
         public IEnumerable<Book> GetBooks()
         {
+            var userId = User.Claims.FirstOrDefault(a => a.Type == "sub")?.Value;
+            _logger.LogInformation("{UserId} is inside get all books API call.  {claims}",
+                userId, User.Claims);
             return _bookRepo.GetAllBooks();
         }
 
