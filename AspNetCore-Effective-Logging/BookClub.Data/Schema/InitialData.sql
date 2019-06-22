@@ -27,3 +27,7 @@ VALUES (N'American Gods' -- Title - nvarchar(300)
        ,'Sci-Fi/Fantasy' -- Genre - varchar(20)
        ,N'Crazy road trip across America involving a war between the old gods and new ones.' -- Description - nvarchar(max)
     )
+
+UPDATE book SET isbn = '0312567073' WHERE id = 1000
+UPDATE book SET isbn = '0060558121' WHERE id = 1001
+UPDATE dbo.Book SET Submitter = 111

@@ -4,6 +4,7 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
     <RootNamespace>BookClub.UI</RootNamespace>
+    <UserSecretsId>64a55203-6024-41a2-9efd-914e7fb0dbd5</UserSecretsId>
   </PropertyGroup>
 
 
@@ -19,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BookClub.Entities\BookClub.Entities.csproj" />
+    <ProjectReference Include="..\BookClub.Logic\BookClub.Logic.csproj" />
   </ItemGroup>
 
 

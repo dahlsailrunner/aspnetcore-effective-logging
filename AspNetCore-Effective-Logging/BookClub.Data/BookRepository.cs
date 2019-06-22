@@ -25,5 +25,17 @@ namespace BookClub.Data
                 .ToList();
             return books;
         }
+
+        public void SubmitNewBook(Book bookToSubmit, int submitter)
+        {
+            _db.Execute("InsertBook", new {
+                bookToSubmit.Title,
+                bookToSubmit.Author,
+                Classification = bookToSubmit.Category,
+                bookToSubmit.Genre,
+                bookToSubmit.Isbn,
+                submitter
+            }, commandType: CommandType.StoredProcedure);
+        }
     }
 }

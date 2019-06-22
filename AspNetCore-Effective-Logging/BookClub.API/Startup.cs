@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using BookClub.Data;
+using BookClub.Logic;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,12 +28,13 @@ namespace BookClub.API
             services.AddScoped<IDbConnection, SqlConnection>(p =>
                 new SqlConnection(Configuration.GetConnectionString("BookClubDb")));
             services.AddScoped<IBookRepository, BookRepository>();
+            services.AddScoped<IBookLogic, BookLogic>();
 
             services.AddAuthentication("Bearer")
                 .AddIdentityServerAuthentication(options =>
                 {
                     options.Authority = "https://demo.identityserver.io";
-                    options.ApiName = "api";
+                    options.ApiName = "api";                    
                 });
 
             services.AddAuthorization();
