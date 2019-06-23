@@ -29,7 +29,7 @@ namespace BookClub.UI.Pages
             using (var http = new HttpClient(new StandardHttpMessageHandler(HttpContext)))
             {
                 var response = await http.GetAsync("https://localhost:44322/api/Book");
-                Books = JsonConvert.DeserializeObject<List<BookModel>>(await response.Content.ReadAsStringAsync());                
+                Books = JsonConvert.DeserializeObject<List<BookModel>>(await response.Content.ReadAsStringAsync()).OrderByDescending(a=> a.Id).ToList();                
             }
         }
     }
