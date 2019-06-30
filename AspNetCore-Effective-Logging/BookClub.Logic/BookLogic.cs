@@ -7,16 +7,19 @@ using BookClub.Logic.Models;
 using BookClub.Entities;
 using System;
 using System.Linq;
+using Microsoft.Extensions.Logging;
 
 namespace BookClub.Logic
 {
     public class BookLogic : IBookLogic
     {
         private readonly IBookRepository _repo;
+        private readonly ILogger<BookLogic> _logger;
 
-        public BookLogic(IBookRepository repo)
+        public BookLogic(IBookRepository repo, ILogger<BookLogic> logger)
         {
             _repo = repo;
+            _logger = logger;
         }
         public async Task<List<BookModel>> GetAllBooks()
         {
@@ -38,16 +41,25 @@ namespace BookClub.Logic
                 Id = book.Id,
                 Title = book.Title,
                 Author = book.Author,
-                Category = book.Category,
+                Classification = book.Classification,
+                Genre = book.Genre,
                 Submitter = GetSubmitterFromId(book.Submitter)
             };
             using (var httpClient = new HttpClient())
-            {
+            {                
                 var uri = $"https://www.googleapis.com/books/v1/volumes?q=isbn:{book.Isbn}";
 
+                if (book.Isbn == "1607066017")  // simulate erroneous api call
+                    uri = $"https://www.googleapis.com/books/v1/volumes?queryIsbn=isbn:{book.Isbn}";
                 try
                 {
+                    _logger.LogDebug("Calling Google API with ISBN {ISBN} and uri {GoogleUri}", book.Isbn, uri);
                     var response = await httpClient.GetAsync(uri);
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        throw new Exception($"Failed in Google API for ISBN: {book.Isbn} - responseCode = " +
+                            $"{response.StatusCode}");
+                    }
                     var content = await response.Content.ReadAsStringAsync();
                     var bookResponse = JsonConvert.DeserializeObject<GoogleBookResponse>(content);
 
@@ -59,10 +71,15 @@ namespace BookClub.Logic
                         bookToReturn.InfoLink = thisBook.VolumeInfo?.InfoLink;
                         bookToReturn.Thumbnail = thisBook.VolumeInfo?.ImageLinks?.Thumbnail;
                     }
+                    else
+                    {
+                        _logger.LogWarning("No book information found in Google for ISBN {ISBN}.", book.Isbn);
+                    }
                 }
                 catch (Exception ex)
                 {
                     // it's ok if google api call doesn't work                    
+                    _logger.LogError("Api failure in Google API call.", ex);
                 }
                 return bookToReturn;
             }
@@ -77,6 +94,7 @@ namespace BookClub.Logic
                 case 111:
                     return "Erik";
                 default:
+                    _logger.LogWarning("Unknown user {UserId} in database.", submitter);
                     return "Alice";
             }
         }

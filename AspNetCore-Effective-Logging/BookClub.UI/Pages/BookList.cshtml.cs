@@ -22,7 +22,7 @@ namespace BookClub.UI.Pages
         public async Task OnGetAsync()
         {
             var userId = User.Claims.FirstOrDefault(a => a.Type == "sub")?.Value;
-            _logger.LogInformation("{UserName} - ({UserId}) is about to call the book api to get all " +
+            _logger.LogInformation("UI ENTRY: {UserName} - ({UserId}) is about to call the book api to get all " +
                                    "books. {Claims}",
                 User.Identity.Name, userId, User.Claims);
 
