@@ -1,34 +1,45 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using BookClub.Infrastructure.Middleware;
 using BookClub.Data;
 using BookClub.Logic;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
+using BookClub.Infrastructure.Filters;
+using BookClub.Infrastructure;
+using Microsoft.Extensions.Logging;
 
 namespace BookClub.API
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private readonly ILoggerFactory _loggerFactory;
+
+        public Startup(IConfiguration configuration, ILoggerFactory loggerFactory)
         {
             Configuration = configuration;
+            _loggerFactory = loggerFactory;
         }
 
         public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IScopeInformation, ScopeInformation>();
+
             services.AddScoped<IDbConnection, SqlConnection>(p =>
                 new SqlConnection(Configuration.GetConnectionString("BookClubDb")));
             services.AddScoped<IBookRepository, BookRepository>();
-            services.AddScoped<IBookLogic, BookLogic>();
+            services.AddScoped<IBookLogic, BookLogic>();            
 
             services.AddAuthentication("Bearer")
                 .AddIdentityServerAuthentication(options =>
@@ -61,20 +72,19 @@ namespace BookClub.API
                 var builder = new AuthorizationPolicyBuilder()
                     .RequireAuthenticatedUser();
                 options.Filters.Add(new AuthorizeFilter(builder.Build()));
+                options.Filters.Add(typeof(TrackActionPerformanceFilter));
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
+            app.UseApiExceptionHandler(options =>
             {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseHsts();
-            }
-
+                options.AddResponseDetails = UpdateApiErrorResponse;
+                options.DetermineLogLevel = DetermineLogLevel;
+            });
+            app.UseHsts();
+            
             app.UseSwagger();
             app.UseSwaggerUI(options =>
             {
@@ -85,6 +95,25 @@ namespace BookClub.API
 
             app.UseHttpsRedirection();
             app.UseMvc();
+        }
+
+        private LogLevel DetermineLogLevel(Exception ex)
+        {
+            if (ex.Message.StartsWith("cannot open database", StringComparison.InvariantCultureIgnoreCase) ||
+                ex.Message.StartsWith("a network-related", StringComparison.InvariantCultureIgnoreCase))
+            {
+                return LogLevel.Critical;
+            }
+            return LogLevel.Error;
+        }
+
+        private void UpdateApiErrorResponse(HttpContext context, Exception ex, ApiError error)
+        {
+            if (ex.GetType().Name == typeof(SqlException).Name)
+            {
+                error.Detail = "Exception was a database exception!";
+            }
+            //error.Links = "https://gethelpformyerror.com/";
         }
     }
 }

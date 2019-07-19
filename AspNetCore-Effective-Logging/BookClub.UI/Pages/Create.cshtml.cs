@@ -17,6 +17,7 @@ namespace BookClub.UI.Pages
         }
         [BindProperty]
         public Book Book { get; set; }
+        
         public void OnGet()
         {
             Book = new Book();
@@ -29,9 +30,9 @@ namespace BookClub.UI.Pages
                 return Page();
             }
             _logger.LogInformation("Submitting new book: {Book}", Book);
-            using (var http = new HttpClient(new StandardHttpMessageHandler(HttpContext)))
+            using (var http = new HttpClient(new StandardHttpMessageHandler(HttpContext, _logger)))
             {
-                await http.PostAsJsonAsync("https://localhost:44322/api/Book", Book);
+                await http.PostAsJsonAsync("https://localhost:44322/apiERROR/Book", Book);
             }
             return RedirectToPage("BookList");
         }
