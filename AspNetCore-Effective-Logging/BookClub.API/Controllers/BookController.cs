@@ -32,7 +32,7 @@ namespace BookClub.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<BookModel>> GetBooks()
+        public async Task<IEnumerable<BookModel>> GetBooks(bool throwException = false)
         {
             //var userId = User.Claims.FirstOrDefault(a => a.Type == "sub")?.Value;
             //var oath2Scopes = string.Join(',', 
@@ -42,9 +42,10 @@ namespace BookClub.API.Controllers
             //using (_logger.BeginScope(_scopeInfo.HostScopeInfo))
             //{
                 _logger.LogInformation("API ENTRY: Inside get all books API call.");
-                return await _bookLogic.GetAllBooks();
+                return await _bookLogic.GetAllBooks(throwException);
             //}            
         }
+        
 
         [HttpGet("{id}", Name = "Get")]
         public Book Get(int id)

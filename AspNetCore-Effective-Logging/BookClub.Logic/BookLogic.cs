@@ -21,9 +21,9 @@ namespace BookClub.Logic
             _repo = repo;
             _logger = logger;
         }
-        public async Task<List<BookModel>> GetAllBooks()
+        public async Task<List<BookModel>> GetAllBooks(bool callBadMethod = false)
         {
-            var books = _repo.GetAllBooks();
+            var books = callBadMethod ? _repo.GetAllBooksBAD() : _repo.GetAllBooks(); 
 
             var bookList = new List<BookModel>();
             foreach (var book in books)

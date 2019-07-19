@@ -37,6 +37,21 @@ namespace BookClub.Data
             
         }
 
+        public List<Book> GetAllBooksBAD()
+        {
+            using (_logger.BeginScope("Doing BAD database work"))
+            {                
+                //_logger.LogDebug(DataEvents.GetMany, "Debugging information for stored proc: {ProcName}", 
+                //                 "GetAllBooks");
+                _logger.RepoCallGetMany("GetAllBooksBAD");
+
+                var books = _db.Query<Book>("GetAllBooks_DoesNotExist", commandType: CommandType.StoredProcedure)
+                    .ToList();
+                return books;
+            }
+
+        }
+
         public void SubmitNewBook(Book bookToSubmit, int submitter)
         {
             _db.Execute("InsertBook", new {
