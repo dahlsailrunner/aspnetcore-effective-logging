@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
-using Newtonsoft.Json;
 using System.Threading.Tasks;
 using BookClub.Data;
 using BookClub.Logic.Models;
@@ -8,6 +7,7 @@ using BookClub.Entities;
 using System;
 using System.Linq;
 using Microsoft.Extensions.Logging;
+using System.Net.Http.Json;
 
 namespace BookClub.Logic
 {
@@ -54,14 +54,7 @@ namespace BookClub.Logic
                 try
                 {
                     _logger.LogDebug("Calling Google API with ISBN {ISBN} and uri {GoogleUri}", book.Isbn, uri);
-                    var response = await httpClient.GetAsync(uri);
-                    if (!response.IsSuccessStatusCode)
-                    {
-                        throw new Exception($"Failed in Google API for ISBN: {book.Isbn} - responseCode = " +
-                            $"{response.StatusCode}");
-                    }
-                    var content = await response.Content.ReadAsStringAsync();
-                    var bookResponse = JsonConvert.DeserializeObject<GoogleBookResponse>(content);
+                    var bookResponse = await httpClient.GetFromJsonAsync<GoogleBookResponse>(uri);
 
                     var thisBook = bookResponse?.Items?.FirstOrDefault();
                     if (thisBook != null)

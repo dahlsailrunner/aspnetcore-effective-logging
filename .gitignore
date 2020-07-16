@@ -24,3 +24,9 @@
 /AspNetCore-Effective-Logging/BookClub.Logic/obj
 /AspNetCore-Effective-Logging/BookClub.Infrastructure/bin/Debug/netstandard2.0
 /AspNetCore-Effective-Logging/BookClub.Infrastructure/obj
+/AspNetCore-Effective-Logging/BookClub.API/bin/Debug/netcoreapp3.1
+/AspNetCore-Effective-Logging/BookClub.Data/bin/Debug/netstandard2.1
+/AspNetCore-Effective-Logging/BookClub.Entities/bin/Debug/netstandard2.1
+/AspNetCore-Effective-Logging/BookClub.Infrastructure/bin/Debug/netstandard2.1
+/AspNetCore-Effective-Logging/BookClub.Logic/bin/Debug/netstandard2.1
+/AspNetCore-Effective-Logging/BookClub.UI/bin/Debug/netcoreapp3.1
