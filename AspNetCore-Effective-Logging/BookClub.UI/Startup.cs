@@ -6,9 +6,7 @@ using BookClub.Infrastructure;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -64,17 +62,18 @@ namespace BookClub.UI
                     };
                 });
 
-            services.AddMvc(config =>
+            services.AddRazorPages();
+            services.AddControllers(config =>
             {
                 var policy = new AuthorizationPolicyBuilder()
                     .RequireAuthenticatedUser()
                     .Build();
                 config.Filters.Add(new AuthorizeFilter(policy));
                 //config.Filters.Add(typeof(TrackPagePerformanceFilter));
-            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            });
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app)
         {
             app.UseExceptionHandler("/Error");
             app.UseHsts();
@@ -86,7 +85,11 @@ namespace BookClub.UI
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
-            app.UseMvc();
+            app.UseRouting();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapRazorPages();
+            });
         }
 
         private ClaimsPrincipal TransformClaims(ClaimsPrincipal principal)
