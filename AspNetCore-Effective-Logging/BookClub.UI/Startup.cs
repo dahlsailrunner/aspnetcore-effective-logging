@@ -45,9 +45,9 @@ namespace BookClub.UI
                     options.SignInScheme = "Cookies";
                     options.Authority = "https://demo.identityserver.io";
 
-                    options.ClientId = "server.hybrid";
+                    options.ClientId = "interactive.confidential";
                     options.ClientSecret = "secret";
-                    options.ResponseType = "code id_token";
+                    options.ResponseType = "code";
                     options.Scope.Add("email");
                     options.Scope.Add("api");
                     options.Scope.Add("offline_access");
