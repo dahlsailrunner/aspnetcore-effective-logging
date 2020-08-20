@@ -16,13 +16,14 @@ There are two projects that should be set to run in this repo:
 * BookClub.UI (this is the user interface - and it makes calls to the API project)
 * BookClub.API (this is the API which has all of the database interactions)
 
-The API projects `appsettings.json` file has a connection string that looks for a `BookClub` database on a local SQLExpress instance.  If you don't have one of these already, you can do the following:
-* Create a database called BookClub in some instance of SQL Server (Express is fine, so is the Docker version)
-* Use the 4 files in the `BookClub.Data/Schema` folder to get set up
-** Create the `Book` table by running the SQL in `Book.sql`
-** Insert a couple of rows by running the SQL in `InitialData.sql`
-** Create stored procedures by running the SQL in both the `GetAllBooks.sql` and `InsertBook.sql` (each creates a proc)
-* Update the connection string in `BookClub.API/appsettings.json` to point to the database you've been working on 
+The API projects `appsettings.json` file has a connection string that looks for a `BookClub` database on a local SQLExpress instance.  If you don't have one `BookClub` database:
+* **Optional**: [Download Microsoft® SQL Server® 2017 Express](https://www.microsoft.com/en-us/download/details.aspx?id=55994) and [SQL Server Management Studio (SSMS)](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?redirectedfrom=MSDN&view=sql-server-ver15).
+* Create a database called BookClub in some instance of SQL Server. Express is fine, so is the Docker version.
+* Use the 4 files in the `BookClub.Data/Schema` folder to set up the `BookClub` database:
+  * Create the `Book` table by running the SQL in `Book.sql`
+  * Insert a couple of rows by running the SQL in `InitialData.sql`
+  * Create stored procedures by running the SQL in both the `GetAllBooks.sql` and `InsertBook.sql` (each creates a proc)
+* Update the connection string in `BookClub.API/appsettings.json` to point to the database.
 
 Run the solution!  :)
 
