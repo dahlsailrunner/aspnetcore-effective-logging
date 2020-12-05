@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookClub.UI", "BookClub.UI\BookClub.UI.csproj", "{B3D5854F-E25C-43B0-8A30-F99D288A1750}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookClub.UI", "S:\source\repos\aspnetcore-effective-logging\AspNetCore-Effective-Logging\BookClub.UI\BookClub.UI.csproj", "{B3D5854F-E25C-43B0-8A30-F99D288A1750}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookClub.API", "BookClub.API\BookClub.API.csproj", "{CEBD2ADF-E97C-49C2-912D-CABF78E70E3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookClub.API", "S:\source\repos\aspnetcore-effective-logging\AspNetCore-Effective-Logging\BookClub.API\BookClub.API.csproj", "{CEBD2ADF-E97C-49C2-912D-CABF78E70E3E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookClub.Data", "BookClub.Data\BookClub.Data.csproj", "{55CA3E5A-922F-44C7-B06F-1D914941FF1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookClub.Data", "S:\source\repos\aspnetcore-effective-logging\AspNetCore-Effective-Logging\BookClub.Data\BookClub.Data.csproj", "{55CA3E5A-922F-44C7-B06F-1D914941FF1C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookClub.Entities", "BookClub.Entities\BookClub.Entities.csproj", "{260F3A72-12AC-4AA5-B07C-66C17777F688}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookClub.Entities", "S:\source\repos\aspnetcore-effective-logging\AspNetCore-Effective-Logging\BookClub.Entities\BookClub.Entities.csproj", "{260F3A72-12AC-4AA5-B07C-66C17777F688}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookClub.Logic", "BookClub.Logic\BookClub.Logic.csproj", "{4927AB3B-FB60-43FD-B0E3-FD7806120AA8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookClub.Logic", "S:\source\repos\aspnetcore-effective-logging\AspNetCore-Effective-Logging\BookClub.Logic\BookClub.Logic.csproj", "{4927AB3B-FB60-43FD-B0E3-FD7806120AA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookClub.Infrastructure", "BookClub.Infrastructure\BookClub.Infrastructure.csproj", "{F95A72EE-6E6C-4DC8-8703-86695B7A4148}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreFlogger", "S:\source\repos\aspnetcore-effective-logging\AspNetCore-Effective-Logging\CoreFlogger\CoreFlogger.csproj", "{F1E0F405-6999-4AAE-9805-E1380871CEB3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{4927AB3B-FB60-43FD-B0E3-FD7806120AA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4927AB3B-FB60-43FD-B0E3-FD7806120AA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4927AB3B-FB60-43FD-B0E3-FD7806120AA8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F95A72EE-6E6C-4DC8-8703-86695B7A4148}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F95A72EE-6E6C-4DC8-8703-86695B7A4148}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F95A72EE-6E6C-4DC8-8703-86695B7A4148}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F95A72EE-6E6C-4DC8-8703-86695B7A4148}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1E0F405-6999-4AAE-9805-E1380871CEB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1E0F405-6999-4AAE-9805-E1380871CEB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1E0F405-6999-4AAE-9805-E1380871CEB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1E0F405-6999-4AAE-9805-E1380871CEB3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

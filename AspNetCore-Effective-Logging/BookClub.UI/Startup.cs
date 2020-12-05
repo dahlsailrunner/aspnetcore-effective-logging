@@ -1,15 +1,20 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using BookClub.Infrastructure;
+using CoreFlogger;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
 
 namespace BookClub.UI
 {
@@ -75,7 +80,31 @@ namespace BookClub.UI
 
         public void Configure(IApplicationBuilder app)
         {
-            app.UseExceptionHandler("/Error");
+            //app.UseExceptionHandler("/Error");
+
+            app.UseExceptionHandler(eApp =>
+            {
+                eApp.Run(async context =>
+                {
+                    context.Response.StatusCode = 500;
+                    context.Response.ContentType = "application/json";
+
+                    var errorCtx = context.Features.Get<IExceptionHandlerFeature>();
+                    if (errorCtx != null)
+                    {
+                        var ex = errorCtx.Error;
+                        WebHelper.LogWebError("ToDos", "Core API", ex, context);
+
+                        var errorId = Activity.Current?.Id ?? context.TraceIdentifier;
+                        var jsonResponse = JsonConvert.SerializeObject(new CustomErrorResponse
+                        {
+                            ErrorId = errorId,
+                            Message = "Some kind of error happened in the API."
+                        });
+                        await context.Response.WriteAsync(jsonResponse, Encoding.UTF8);
+                    }
+                });
+            });
             app.UseHsts();
             
             app.UseHttpsRedirection();

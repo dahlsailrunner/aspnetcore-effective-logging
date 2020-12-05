@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using BookClub.Logic.Models;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using BookClub.Infrastructure;
-using BookClub.Infrastructure.BaseClasses;
+using CoreFlogger;
+using CoreFlogger.BaseClasses;
 
 namespace BookClub.UI.Pages
 {

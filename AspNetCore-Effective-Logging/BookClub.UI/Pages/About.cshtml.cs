@@ -1,5 +1,5 @@
-﻿using BookClub.Infrastructure;
-using BookClub.Infrastructure.BaseClasses;
+﻿using CoreFlogger;
+using CoreFlogger.BaseClasses;
 using Microsoft.Extensions.Logging;
 using System.Linq;
 

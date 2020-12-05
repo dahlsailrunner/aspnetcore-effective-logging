@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,13 +12,13 @@
     <PackageReference Include="Serilog.AspNetCore" Version="3.2.0" />
     <PackageReference Include="Serilog.Sinks.Seq" Version="4.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.5.1" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.1" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CoreFlogger\CoreFlogger.csproj" />
     <ProjectReference Include="..\BookClub.Data\BookClub.Data.csproj" />
     <ProjectReference Include="..\BookClub.Entities\BookClub.Entities.csproj" />
-    <ProjectReference Include="..\BookClub.Infrastructure\BookClub.Infrastructure.csproj" />
     <ProjectReference Include="..\BookClub.Logic\BookClub.Logic.csproj" />
   </ItemGroup>
 
