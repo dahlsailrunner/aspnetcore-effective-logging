@@ -4,9 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using BookClub.Data;
 using BookClub.Entities;
-using BookClub.Infrastructure;
+//using BookClub.Infrastructure;
 using BookClub.Logic;
 using BookClub.Logic.Models;
+using CoreFlogger;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 

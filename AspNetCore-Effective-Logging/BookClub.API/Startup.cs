@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using BookClub.Infrastructure.Middleware;
+//using BookClub.Infrastructure.Middleware;
 using BookClub.Data;
+using BookClub.Infrastructure.Filters;
+using BookClub.Infrastructure.Middleware;
 using BookClub.Logic;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -10,11 +12,12 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using BookClub.Infrastructure.Filters;
-using BookClub.Infrastructure;
+//using BookClub.Infrastructure.Filters;
+//using BookClub.Infrastructure;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using CoreFlogger;
 
 namespace BookClub.API
 {

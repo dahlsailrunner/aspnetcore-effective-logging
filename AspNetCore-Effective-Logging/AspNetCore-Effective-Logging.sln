@@ -13,7 +13,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookClub.Entities", "BookCl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookClub.Logic", "BookClub.Logic\BookClub.Logic.csproj", "{4927AB3B-FB60-43FD-B0E3-FD7806120AA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookClub.Infrastructure", "BookClub.Infrastructure\BookClub.Infrastructure.csproj", "{F95A72EE-6E6C-4DC8-8703-86695B7A4148}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreFlogger", "CoreFlogger\CoreFlogger.csproj", "{F1E0F405-6999-4AAE-9805-E1380871CEB3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flogger.Serilog", "Flogger.Serilog\Flogger.Serilog.csproj", "{0316F801-3ECF-4D7B-93CF-09A4DA5A3BDE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4334984C-29C7-4F20-A22B-BD66E8CB8CE1}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +48,14 @@ Global
 		{4927AB3B-FB60-43FD-B0E3-FD7806120AA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4927AB3B-FB60-43FD-B0E3-FD7806120AA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4927AB3B-FB60-43FD-B0E3-FD7806120AA8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F95A72EE-6E6C-4DC8-8703-86695B7A4148}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F95A72EE-6E6C-4DC8-8703-86695B7A4148}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F95A72EE-6E6C-4DC8-8703-86695B7A4148}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F95A72EE-6E6C-4DC8-8703-86695B7A4148}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1E0F405-6999-4AAE-9805-E1380871CEB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1E0F405-6999-4AAE-9805-E1380871CEB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1E0F405-6999-4AAE-9805-E1380871CEB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1E0F405-6999-4AAE-9805-E1380871CEB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0316F801-3ECF-4D7B-93CF-09A4DA5A3BDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0316F801-3ECF-4D7B-93CF-09A4DA5A3BDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0316F801-3ECF-4D7B-93CF-09A4DA5A3BDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0316F801-3ECF-4D7B-93CF-09A4DA5A3BDE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

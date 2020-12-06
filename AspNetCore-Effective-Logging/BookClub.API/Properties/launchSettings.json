@@ -14,7 +14,16 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "LOGFILE_DIAG": "c:\\temp\\logs\\mvc_diag_ael.txt",
+        "DIAGNOSTICS_ON": "true",
+        "CLIENT_SECRET": "secret",
+        "LOGFILE_USAGE": "c:\\temp\\logs\\mvc_usage_ael.txt",
+        "TODO_CONNSTR": "Data Source=.;Initial Catalog=ToDoDataAccess;Integrated Security=True",
+        "CLIENT_ID": "server.hybrid",
+        "LOGFILE_ERROR": "c:\\temp\\logs\\mvc_error_ael.txt",
+        "LOGFILE_PERF": "c:\\temp\\logs\\mvc_perf_ael.txt",
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "AUTHORITY": "https://demo.identityserver.io/Account/Login"
       }
     },
     "BookClub_API": {
